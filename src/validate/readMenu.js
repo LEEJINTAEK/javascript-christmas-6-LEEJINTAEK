@@ -2,7 +2,7 @@ import MENUS from '../domain/menu.js';
 
 const MENU_ERROR_MESSAGE = '[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.';
 
-class readMenu {
+class ReadMenu {
   #menu = new Map();
 
   //menus->2차원배열
@@ -46,4 +46,4 @@ class readMenu {
   }
 }
 
-export default readMenu;
+export default ReadMenu;

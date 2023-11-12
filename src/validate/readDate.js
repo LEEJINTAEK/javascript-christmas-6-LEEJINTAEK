@@ -1,4 +1,4 @@
-class readDate {
+class ReadDate {
   constructor(date) {
     this.#validate(date);
   }
@@ -10,4 +10,4 @@ class readDate {
   }
 }
 
-export default readDate;
+export default ReadDate;
