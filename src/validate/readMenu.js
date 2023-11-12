@@ -22,12 +22,12 @@ class ReadMenu {
 
   //메뉴가 중복일 때
   #duplication(menus) {
-    const menuCheck = new Map();
+    const menuCheck = [];
     for (const [menu, count] of menus) {
-      if (this.menuCheck.has(menu)) {
+      if (menuCheck.includes(menu)) {
         throw new Error(MENU_ERROR_MESSAGE);
       }
-      this.menuCheck.set(menu, count);
+      menuCheck.push(menu);
     }
   }
 
