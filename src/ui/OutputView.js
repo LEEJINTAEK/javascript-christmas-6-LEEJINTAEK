@@ -23,9 +23,9 @@ const OutputView = {
   },
   printBenefit(dictBenefit) {
     MissionUtils.Console.print('<혜택 내역>');
-    for (const [event, sale] of Object.entries(dictBenefit)) {
+    for (const event in dictBenefit) {
       if (sale > 0) {
-        MissionUtils.Console.print(`${event}: ${(sale * -1).toLocaleString()}원`);
+        MissionUtils.Console.print(`${event}: ${(dictBenefit[event] * -1).toLocaleString()}원`);
       }
     }
   },
