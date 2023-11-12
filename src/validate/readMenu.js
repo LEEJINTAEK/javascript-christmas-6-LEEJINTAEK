@@ -1,4 +1,4 @@
-import MENUS from '../domain/menu.js';
+import MENUS from '../domain/Menu.js';
 
 const MENU_ERROR_MESSAGE = '[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.';
 
@@ -35,7 +35,7 @@ class ReadMenu {
   //메뉴가 없을 때
   #notOnTheMenu(menu) {
     let found = false;
-    for (const category in MENU) {
+    for (const category in MENUS) {
       if (MENUS[category][menu]) {
         found = true;
       }
