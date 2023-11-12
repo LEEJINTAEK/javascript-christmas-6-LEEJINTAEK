@@ -3,8 +3,6 @@ import MENUS from '../domain/Menu.js';
 const MENU_ERROR_MESSAGE = '[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.';
 
 class ReadMenu {
-  #menu = new Map();
-
   //menus->2차원배열
   constructor(menus) {
     this.#validate(menus);
@@ -24,11 +22,12 @@ class ReadMenu {
 
   //메뉴가 중복일 때
   #duplication(menus) {
+    const menuCheck = new Map();
     for (const [menu, count] of menus) {
-      if (this.#menu.has(menu)) {
+      if (this.menuCheck.has(menu)) {
         throw new Error(MENU_ERROR_MESSAGE);
       }
-      this.#menu.set(menu, count);
+      this.menuCheck.set(menu, count);
     }
   }
 
