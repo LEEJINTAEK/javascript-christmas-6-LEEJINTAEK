@@ -61,6 +61,10 @@ class EventDiscount {
   }
 
   getDiscountContents() {
+    if (Object.keys(this.#discountContents).length === 0) {
+      return '없음';
+    }
+
     return this.#discountContents;
   }
 }
