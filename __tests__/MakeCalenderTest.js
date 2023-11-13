@@ -1,14 +1,14 @@
-import Calendar from '../src/domain/MakeCalender.js';
+import Calender from '../src/domain/MakeCalender.js';
 
-describe('Calendar', () => {
-  let calendar;
+describe('Calender', () => {
+  let calender;
   let weekday, weekend, specialDay;
 
   beforeEach(() => {
-    calendar = new Calendar();
-    weekday = calendar.getWeekday();
-    weekend = calendar.getWeekend();
-    specialDay = calendar.getSpecialDay();
+    calender = new Calender();
+    weekday = calender.getWeekday();
+    weekend = calender.getWeekend();
+    specialDay = calender.getSpecialDay();
   });
 
   test('주말과 평일 체크', () => {
