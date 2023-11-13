@@ -1,12 +1,12 @@
-import EventConditionController from './EventConditionController';
+import EventConditionController from '../src/domain/EventCondition.js';
 
 describe('EventConditionController', () => {
-  it('주문 금액 만원 이상', () => {
+  test('주문 금액 만원 이상', () => {
     const controller = new EventConditionController(10000);
     expect(controller.getEventMode()).toBe(true);
   });
 
-  it('주문 금액 만원 이하', () => {
+  test('주문 금액 만원 이하', () => {
     const controller = new EventConditionController(5000);
     expect(controller.getEventMode()).toBe(false);
   });
