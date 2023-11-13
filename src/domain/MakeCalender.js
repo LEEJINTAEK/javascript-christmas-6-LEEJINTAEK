@@ -1,4 +1,4 @@
-class Calendar {
+class Calender {
   #days;
   constructor() {
     this.#days = {
@@ -45,4 +45,4 @@ class Calendar {
   }
 }
 
-export default Calendar;
+export default Calender;
