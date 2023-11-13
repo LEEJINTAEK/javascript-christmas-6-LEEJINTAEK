@@ -15,27 +15,31 @@ const OutputView = {
   },
   printTotal(totalAmount) {
     MissionUtils.Console.print('<할인 전 총주문 금액>');
-    MissionUtils.Console.print(totalAmount.toLocaleString());
+    MissionUtils.Console.print(`${totalAmount.toLocaleString()}원`);
   },
-  printGiftMenu(giftMenu) {
+  printBonusMenu(BonusMenu) {
     MissionUtils.Console.print('<증정 메뉴>');
-    MissionUtils.Console.print(giftMenu);
+    MissionUtils.Console.print(BonusMenu);
   },
-  printBenefit(dictBenefit) {
+  printBenefit(benefit) {
     MissionUtils.Console.print('<혜택 내역>');
-    for (const event in dictBenefit) {
-      if (sale > 0) {
-        MissionUtils.Console.print(`${event}: ${(dictBenefit[event] * -1).toLocaleString()}원`);
-      }
+    if (benefit === '없음') {
+      MissionUtils.Console.print(`${benefit}`);
+      return;
+    }
+    for (const event in benefit) {
+      MissionUtils.Console.print(`${event}: ${(benefit[event] * -1).toLocaleString()}원`);
     }
   },
   printTotalBenefit(benefitAmount) {
     MissionUtils.Console.print('<총혜택 금액>');
-    MissionUtils.Console.print((benefitAmount * -1).toLocaleString());
+    MissionUtils.Console.print(
+      `${(benefitAmount === 0 ? benefitAmount : benefitAmount * -1).toLocaleString()}원`,
+    );
   },
   printBill(pay) {
     MissionUtils.Console.print('<할인 후 예상 결제 금액>');
-    MissionUtils.Console.print(pay.toLocaleString());
+    MissionUtils.Console.print(`${pay.toLocaleString()}원`);
   },
   printBadge(badge) {
     MissionUtils.Console.print('<12월 이벤트 배지>');

@@ -13,7 +13,7 @@ const InputView = {
       return Number(input);
     } catch (error) {
       MissionUtils.Console.print(error.message);
-      await this.readDate();
+      return await this.readDate();
     }
   },
 
@@ -22,13 +22,13 @@ const InputView = {
       const input = await MissionUtils.Console.readLineAsync(
         '주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)',
       );
-      inputConvertArray = input.split(',').map((menu) => menu.split('-'));
+      const inputConvertArray = input.split(',').map((menu) => menu.split('-'));
       new ReadMenu(inputConvertArray);
 
       return inputConvertArray;
     } catch (error) {
       MissionUtils.Console.print(error.message);
-      await this.readMenu();
+      return await this.readMenu();
     }
   },
 };
