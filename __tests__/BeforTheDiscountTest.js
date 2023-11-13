@@ -12,15 +12,6 @@ describe('BeforeTheDiscount', () => {
     const beforeTheDiscount = new BeforeTheDiscount(menus);
     const totalAmount = beforeTheDiscount.getTotalAmount();
 
-    let expectedAmount = 0;
-    for (const [menu, count] of menus) {
-      for (const category in MENUS) {
-        if (MENUS[category][menu]) {
-          expectedAmount += MENUS[category][menu] * count;
-        }
-      }
-    }
-
-    expect(totalAmount).toEqual(expectedAmount);
+    expect(totalAmount).toEqual(145000);
   });
 });
