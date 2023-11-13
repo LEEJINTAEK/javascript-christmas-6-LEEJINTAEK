@@ -4,9 +4,11 @@ import MENUS from './Menu.js';
 class EventDiscount {
   #calender;
   #date;
+  #discountContents;
   constructor(date) {
     this.#calender = new Calender();
     this.#date = date;
+    this.#discountContents = {};
   }
 
   dDayDiscount() {
@@ -17,11 +19,14 @@ class EventDiscount {
     for (let i = 1; i < this.#date; i++) {
       discount += 100;
     }
+    this.#discountContents['크리스마스 디데이 할인'] = discount;
     return discount;
   }
-  specailDiscount() {
+  specialDiscount() {
+    const discount = 1000;
     if (this.#calender.getSpecialDay().includes(this.#date)) {
-      return 1000;
+      this.#discountContents['특별 할인'] = discount;
+      return discount;
     }
     return 0;
   }
@@ -39,16 +44,24 @@ class EventDiscount {
   }
 
   #weekdayDiscount(count) {
+    const discount = 2023 * count;
     if (this.#calender.getWeekday().includes(this.#date)) {
-      return 2023 * count;
+      this.#discountContents['평일 할인'] = discount;
+      return discount;
     }
     return 0;
   }
   #weekendDiscount(count) {
+    const discount = 2023 * count;
     if (this.#calender.getWeekend().includes(this.#date)) {
-      return 2023 * count;
+      this.#discountContents['주말 할인'] = discount;
+      return discount;
     }
     return 0;
+  }
+
+  getDiscountContents() {
+    return this.#discountContents;
   }
 }
 
