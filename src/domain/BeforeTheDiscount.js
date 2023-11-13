@@ -9,7 +9,7 @@ class BeforeTheDiscount {
 
   #searchMenu(menus) {
     for (const [menu, count] of menus) {
-      this.#priceSum(menu, count);
+      this.#priceSum(menu, Number(count));
     }
   }
 

@@ -1,9 +1,9 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 
 const OutputView = {
-  printMenu(menuMap) {
+  printMenu(menus) {
     MissionUtils.Console.print('<주문 메뉴>');
-    for (const [menu, count] of menuMap) {
+    for (const [menu, count] of menus) {
       MissionUtils.Console.print(`${menu} ${count}개`);
     }
   },
@@ -11,11 +11,11 @@ const OutputView = {
     MissionUtils.Console.print('안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.');
   },
   printEventMessage(day) {
-    MissionUtils.Console.print(`12월 ${day}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!`);
+    MissionUtils.Console.print(`12월 ${day}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n`);
   },
-  printTotal(pay) {
+  printTotal(totalAmount) {
     MissionUtils.Console.print('<할인 전 총주문 금액>');
-    MissionUtils.Console.print(pay.toLocaleString());
+    MissionUtils.Console.print(totalAmount.toLocaleString());
   },
   printGiftMenu(giftMenu) {
     MissionUtils.Console.print('<증정 메뉴>');
