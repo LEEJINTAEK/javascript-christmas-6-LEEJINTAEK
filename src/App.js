@@ -1,8 +1,8 @@
-import Planner from './domain/PlannerStart';
+import PlannerStart from './domain/PlannerStart.js';
 
 class App {
   async run() {
-    const eventPlanner = new Planner();
+    const eventPlanner = new PlannerStart();
     await eventPlanner.start();
   }
 }
