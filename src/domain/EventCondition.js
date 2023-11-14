@@ -1,19 +1,19 @@
 import EventStandard from '../const/EventStandard.js';
 
 class EventConditionController {
-  #eventOccur;
+  #isEventOccur;
   constructor(totalAmount) {
-    this.#eventOccur = false;
+    this.#isEventOccur = false;
     this.#occurController(totalAmount);
   }
   #occurController(totalAmount) {
     if (totalAmount >= EventStandard.occurStandard.price) {
-      this.#eventOccur = true;
+      this.#isEventOccur = true;
     }
   }
 
   getEventMode() {
-    return this.#eventOccur;
+    return this.#isEventOccur;
   }
 }
 
