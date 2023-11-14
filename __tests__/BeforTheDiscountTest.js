@@ -1,5 +1,5 @@
 import BeforeTheDiscount from '../src/domain/BeforeTheDiscount.js';
-import MENUS from '../src/domain/Menu.js';
+import MENUS from '../src/const/Menu.js';
 
 describe('BeforeTheDiscount', () => {
   test('현재 메뉴', () => {
