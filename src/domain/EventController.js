@@ -40,7 +40,7 @@ class EventController {
     const eventDiscount = new EventDiscount(date);
 
     let discount = eventDiscount.dDayDiscount() + eventDiscount.specialDiscount();
-    discount += this.#getWeekDiscount(menus, date, eventDiscount);
+    discount += this.#getWeekDiscount(menus, eventDiscount);
     this.#eventContents[EventText.eventContents.totalBenefit] = discount;
 
     this.#discountContents = eventDiscount.getDiscountContents();
@@ -49,7 +49,7 @@ class EventController {
     this.#eventContents[EventText.eventContents.benefitContents] = this.#discountContents;
   }
 
-  #getWeekDiscount(menus, date, eventDiscount) {
+  #getWeekDiscount(menus, eventDiscount) {
     let discount = 0;
     for (const [menu, count] of menus) {
       discount += eventDiscount.weekDiscount(menu, Number(count));
@@ -61,14 +61,13 @@ class EventController {
     if (totalAmount >= EventStandard.bonusStandard.price) {
       this.#eventContents[EventText.eventContents.bonus] = EventText.bonusMenu.menu;
 
-      this.#eventContents[EventText.eventContents.totalBenefit] +=
-        MENUS[EventText.bonusMenu.category][EventText.bonusMenu.menu];
+      const bonusMenuPrice = MENUS[EventText.bonusMenu.category][EventText.bonusMenu.menu];
 
-      this.#eventContents[EventText.eventContents.bill] +=
-        MENUS[EventText.bonusMenu.category][EventText.bonusMenu.menu];
+      this.#eventContents[EventText.eventContents.totalBenefit] += bonusMenuPrice;
 
-      this.#discountContents[EventText.discountContents.bonus] =
-        MENUS[EventText.bonusMenu.category][EventText.bonusMenu.menu];
+      this.#eventContents[EventText.eventContents.bill] += bonusMenuPrice; //할인전 - (할인혜택 +보너스) - 보너스
+
+      this.#discountContents[EventText.discountContents.bonus] = bonusMenuPrice;
     }
   }
 
