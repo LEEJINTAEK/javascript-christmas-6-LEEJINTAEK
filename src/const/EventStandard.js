@@ -20,6 +20,16 @@ const EventStandard = {
   eventMonth: {
     month: 12,
   },
+  eventDay: {
+    startDay: 1,
+    endDay: 31,
+  },
+  menuCount: {
+    count: 20,
+  },
+  dontOrder: {
+    menu: 'DRINK',
+  },
 };
 
 export default EventStandard;

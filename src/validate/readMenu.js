@@ -1,9 +1,10 @@
 import MENUS from '../domain/Menu.js';
+import EventError from '../const/EventError.js';
+import EventStandard from '../const/EventStandard.js';
 
-const MENU_ERROR_MESSAGE = '[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.';
+const MENU_ERROR_MESSAGE = EventError.menuError;
 
 class ReadMenu {
-  #anotherMenus = new Set(); //음료만 시키는지 검사
   //menus->2차원배열
   constructor(menus) {
     this.#validate(menus);
@@ -32,24 +33,25 @@ class ReadMenu {
       menuCheck.push(menu);
       menuCount += Number(count);
     }
-    if (menuCount > 20) {
+    if (menuCount > EventStandard.menuCount.count) {
       throw new Error(MENU_ERROR_MESSAGE);
     }
   }
 
   //메뉴가 없을 때 및 음료만 시킬 때
   #notOnTheMenuAndDrink(menu) {
+    const anotherMenus = new Set(); //음료만 시키는지 검사
     let find = false;
     for (const category in MENUS) {
       if (MENUS[category][menu]) {
         find = true;
-        this.#anotherMenus.add(category);
+        anotherMenus.add(category);
       }
     }
     if (!find) {
       throw new Error(MENU_ERROR_MESSAGE);
     }
-    if (this.#anotherMenus.size === 1 && this.#anotherMenus.has('DRINK')) {
+    if (anotherMenus.size === 1 && anotherMenus.has(EventStandard.dontOrder.menu)) {
       throw new Error(MENU_ERROR_MESSAGE);
     }
   }
