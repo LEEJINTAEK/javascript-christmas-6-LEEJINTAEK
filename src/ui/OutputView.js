@@ -25,6 +25,10 @@ const OutputView = {
   },
   printBonusMenu(BonusMenu) {
     MissionUtils.Console.print(`<${EventText.eventContents.bonus}>`);
+    if (BonusMenu === EventText.notThing.none) {
+      MissionUtils.Console.print(`${BonusMenu}`);
+      return;
+    }
     MissionUtils.Console.print(`${BonusMenu} ${BonusMenu.split(',').length}개`);
   },
   printBenefit(benefit) {
