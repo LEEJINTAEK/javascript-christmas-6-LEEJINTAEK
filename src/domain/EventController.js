@@ -4,6 +4,7 @@ import EventDiscount from './EventDiscount.js';
 import EventBadge from './EventBadge.js';
 import EventText from '../const/EventText.js';
 import EventStandard from '../const/EventStandard.js';
+import EventError from '../const/EventError.js';
 
 class EventController {
   #eventContents = {};
@@ -27,6 +28,7 @@ class EventController {
       this.#eventContents[event] = EventText.notThing.none;
     });
     this.#eventContents[EventText.eventContents.totalBenefit] = 0;
+    this.#eventContents[EventText.eventContents.bill] = 0;
   }
 
   #event(totalAmount, date, menus) {
@@ -60,6 +62,9 @@ class EventController {
       this.#eventContents[EventText.eventContents.bonus] = EventText.bonusMenu.menu;
 
       this.#eventContents[EventText.eventContents.totalBenefit] +=
+        MENUS[EventText.bonusMenu.category][EventText.bonusMenu.menu];
+
+      this.#eventContents[EventText.eventContents.bill] +=
         MENUS[EventText.bonusMenu.category][EventText.bonusMenu.menu];
 
       this.#discountContents[EventText.discountContents.bonus] =

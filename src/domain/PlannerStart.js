@@ -45,7 +45,7 @@ class Planner {
     OutputView.printBill(
       totalAmount -
         this.#getBenefitContents[EventText.eventContents.totalBenefit] +
-        MENUS[EventText.bonusMenu.category][EventText.bonusMenu.menu],
+        this.#getBenefitContents[EventText.eventContents.bill], //보너스 메뉴 받은 것 상쇄
     );
     OutputView.printBadge(this.#getBenefitContents[EventText.eventContents.badge]);
   }
