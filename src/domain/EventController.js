@@ -2,6 +2,8 @@
 import MENUS from './Menu.js';
 import EventDiscount from './EventDiscount.js';
 import EventBadge from './EventBadge.js';
+import EventText from '../const/EventText.js';
+import EventStandard from '../const/EventStandard.js';
 
 class EventController {
   #eventContents = {};
@@ -16,13 +18,15 @@ class EventController {
   }
 
   #eventContentsMaker() {
-    const contents = ['증정 메뉴', '혜택 내역', '이벤트 배지'];
-    const NO_BENEFIT = '없음';
-
+    const contents = [
+      EventText.eventContents.bonus,
+      EventText.eventContents.benefitContents,
+      EventText.eventContents.badge,
+    ];
     contents.forEach((event) => {
-      this.#eventContents[event] = NO_BENEFIT;
+      this.#eventContents[event] = EventText.notThing.none;
     });
-    this.#eventContents['총혜택 금액'] = 0;
+    this.#eventContents[EventText.eventContents.totalBenefit] = 0;
   }
 
   #event(totalAmount, date, menus) {
@@ -35,12 +39,12 @@ class EventController {
 
     let discount = eventDiscount.dDayDiscount() + eventDiscount.specialDiscount();
     discount += this.#getWeekDiscount(menus, date, eventDiscount);
-    this.#eventContents['총혜택 금액'] = discount;
+    this.#eventContents[EventText.eventContents.totalBenefit] = discount;
 
     this.#discountContents = eventDiscount.getDiscountContents();
     this.#getBonusMenu(totalAmount);
 
-    this.#eventContents['혜택 내역'] = this.#discountContents;
+    this.#eventContents[EventText.eventContents.benefitContents] = this.#discountContents;
   }
 
   #getWeekDiscount(menus, date, eventDiscount) {
@@ -52,18 +56,20 @@ class EventController {
   }
 
   #getBonusMenu(totalAmount) {
-    const EVENT_CATEGORY = 'DRINK';
-    const EVENT_MENU = '샴페인';
-    if (totalAmount > 120000) {
-      this.#eventContents['증정 메뉴'] = EVENT_MENU;
-      this.#eventContents['총혜택 금액'] += MENUS[EVENT_CATEGORY][EVENT_MENU];
-      this.#discountContents['증정 이벤트'] = MENUS[EVENT_CATEGORY][EVENT_MENU];
+    if (totalAmount >= EventStandard.bonusStandard.price) {
+      this.#eventContents[EventText.eventContents.bonus] = EventText.bonusMenu.menu;
+
+      this.#eventContents[EventText.eventContents.totalBenefit] +=
+        MENUS[EventText.bonusMenu.category][EventText.bonusMenu.menu];
+
+      this.#discountContents[EventText.discountContents.bonus] =
+        MENUS[EventText.bonusMenu.category][EventText.bonusMenu.menu];
     }
   }
 
   #getEventBadge() {
-    this.#eventContents['이벤트 배지'] = EventBadge.getEventBadge(
-      this.#eventContents['총혜택 금액'],
+    this.#eventContents[EventText.eventContents.badge] = EventBadge.getEventBadge(
+      this.#eventContents[EventText.eventContents.totalBenefit],
     );
   }
 

@@ -1,4 +1,4 @@
-//총주문 금액 10,000원 이상부터 이벤트 적용
+import EventStandard from '../const/EventStandard.js';
 
 class EventConditionController {
   #eventOccur;
@@ -7,7 +7,7 @@ class EventConditionController {
     this.#occurController(totalAmount);
   }
   #occurController(totalAmount) {
-    if (totalAmount >= 10000) {
+    if (totalAmount >= EventStandard.occurStandard.price) {
       this.#eventOccur = true;
     }
   }

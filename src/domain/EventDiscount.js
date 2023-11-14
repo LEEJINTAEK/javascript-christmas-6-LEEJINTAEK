@@ -1,5 +1,7 @@
 import Calender from './MakeCalender.js';
 import MENUS from './Menu.js';
+import EventText from '../const/EventText.js';
+import EventStandard from '../const/EventStandard.js';
 
 class EventDiscount {
   #calender;
@@ -12,20 +14,20 @@ class EventDiscount {
   }
 
   dDayDiscount() {
-    if (this.#date >= 25) {
+    if (this.#date >= EventStandard.discountStandard.dDayDiscountEnd) {
       return 0;
     }
-    let discount = 1000;
+    let discount = EventStandard.discountStandard.dDayStartDiscount;
     for (let i = 1; i < this.#date; i++) {
-      discount += 100;
+      discount += EventStandard.discountStandard.dDayPlusDiscount;
     }
-    this.#discountContents['크리스마스 디데이 할인'] = discount;
+    this.#discountContents[EventText.discountContents.dDayDiscount] = discount;
     return discount;
   }
   specialDiscount() {
-    const discount = 1000;
+    const discount = EventStandard.discountStandard.specialDiscount;
     if (this.#calender.getSpecialDay().includes(this.#date)) {
-      this.#discountContents['특별 할인'] = discount;
+      this.#discountContents[EventText.discountContents.specialDiscount] = discount;
       return discount;
     }
     return 0;
@@ -33,10 +35,10 @@ class EventDiscount {
 
   weekDiscount(menu, count) {
     for (const category in MENUS) {
-      if (MENUS[category][menu] && category === 'DESSERT') {
+      if (MENUS[category][menu] && category === EventText.eventMenu.weekday) {
         return this.#weekdayDiscount(count);
       }
-      if (MENUS[category][menu] && category === 'MAIN') {
+      if (MENUS[category][menu] && category === EventText.eventMenu.weekend) {
         return this.#weekendDiscount(count);
       }
     }
@@ -44,17 +46,17 @@ class EventDiscount {
   }
 
   #weekdayDiscount(count) {
-    const discount = 2023 * count;
+    const discount = EventStandard.discountStandard.weekDiscount * count;
     if (this.#calender.getWeekday().includes(this.#date)) {
-      this.#discountContents['평일 할인'] = discount;
+      this.#discountContents[EventText.discountContents.weekdayDiscount] = discount;
       return discount;
     }
     return 0;
   }
   #weekendDiscount(count) {
-    const discount = 2023 * count;
+    const discount = EventStandard.discountStandard.weekDiscount * count;
     if (this.#calender.getWeekend().includes(this.#date)) {
-      this.#discountContents['주말 할인'] = discount;
+      this.#discountContents[EventText.discountContents.weekendDiscount] = discount;
       return discount;
     }
     return 0;
@@ -62,7 +64,7 @@ class EventDiscount {
 
   getDiscountContents() {
     if (Object.keys(this.#discountContents).length === 0) {
-      return '없음';
+      return EventText.notThing.none;
     }
 
     return this.#discountContents;

@@ -3,6 +3,7 @@ import OutputView from '../UI/OutputView.js';
 import BeforeTheDiscount from './BeforeTheDiscount.js';
 import EventConditionController from './eventCondition.js';
 import EventController from './EventController.js';
+import EventText from '../const/EventText.js';
 
 class Planner {
   #getBenefitContents;
@@ -37,11 +38,13 @@ class Planner {
     this.#printContents(totalAmount);
   }
   #printContents(totalAmount) {
-    OutputView.printBonusMenu(this.#getBenefitContents['증정 메뉴']);
-    OutputView.printBenefit(this.#getBenefitContents['혜택 내역']);
-    OutputView.printTotalBenefit(this.#getBenefitContents['총혜택 금액']);
-    OutputView.printBill(totalAmount - this.#getBenefitContents['총혜택 금액']);
-    OutputView.printBadge(this.#getBenefitContents['이벤트 배지']);
+    OutputView.printBonusMenu(this.#getBenefitContents[EventText.eventContents.bonus]);
+    OutputView.printBenefit(this.#getBenefitContents[EventText.eventContents.benefitContents]);
+    OutputView.printTotalBenefit(this.#getBenefitContents[EventText.eventContents.totalBenefit]);
+    OutputView.printBill(
+      totalAmount - this.#getBenefitContents[EventText.eventContents.totalBenefit],
+    );
+    OutputView.printBadge(this.#getBenefitContents[EventText.eventContents.badge]);
   }
 }
 

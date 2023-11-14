@@ -1,15 +1,18 @@
+import EventText from '../const/EventText.js';
+import EventStandard from '../const/EventStandard.js';
+
 const EventBadge = {
   getEventBadge(totalBenefit) {
-    if (totalBenefit >= 20000) {
-      return '산타';
+    if (totalBenefit >= EventStandard.badgeStandard.firstTotalBenefit) {
+      return EventText.badge.first;
     }
-    if (totalBenefit >= 10000) {
-      return '트리';
+    if (totalBenefit >= EventStandard.badgeStandard.secondTotalBenefit) {
+      return EventText.badge.second;
     }
-    if (totalBenefit >= 5000) {
-      return '별';
+    if (totalBenefit >= EventStandard.badgeStandard.thirdTotalBenefit) {
+      return EventText.badge.third;
     }
-    return '없음';
+    return EventText.notThing.none;
   },
 };
 
