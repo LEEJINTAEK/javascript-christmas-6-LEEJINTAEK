@@ -3,6 +3,7 @@ import MENUS from '../const/Menu.js';
 import EventText from '../const/EventText.js';
 import EventStandard from '../const/EventStandard.js';
 
+//할인 혜택
 class EventDiscount {
   #calender;
   #date;

@@ -1,5 +1,6 @@
 import EventStandard from '../const/EventStandard.js';
 
+//이벤트 조건 발생
 class EventConditionController {
   #isEventOccur;
   constructor(totalAmount) {

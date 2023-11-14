@@ -1,5 +1,6 @@
 import MENUS from '../const/Menu.js';
 
+//할인 전 총합 계산
 class BeforeTheDiscount {
   #amount;
   constructor(menus) {

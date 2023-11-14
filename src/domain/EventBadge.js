@@ -1,6 +1,7 @@
 import EventText from '../const/EventText.js';
 import EventStandard from '../const/EventStandard.js';
 
+//이벤트 배지
 const EventBadge = {
   getEventBadge(totalBenefit) {
     if (totalBenefit >= EventStandard.badgeStandard.firstTotalBenefit) {
