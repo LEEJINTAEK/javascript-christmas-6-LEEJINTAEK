@@ -4,6 +4,7 @@ import BeforeTheDiscount from './BeforeTheDiscount.js';
 import EventConditionController from './eventCondition.js';
 import EventController from './EventController.js';
 import EventText from '../const/EventText.js';
+import MENUS from './Menu.js';
 
 class Planner {
   #getBenefitContents;
@@ -42,7 +43,9 @@ class Planner {
     OutputView.printBenefit(this.#getBenefitContents[EventText.eventContents.benefitContents]);
     OutputView.printTotalBenefit(this.#getBenefitContents[EventText.eventContents.totalBenefit]);
     OutputView.printBill(
-      totalAmount - this.#getBenefitContents[EventText.eventContents.totalBenefit],
+      totalAmount -
+        this.#getBenefitContents[EventText.eventContents.totalBenefit] +
+        MENUS[EventText.bonusMenu.category][EventText.bonusMenu.menu],
     );
     OutputView.printBadge(this.#getBenefitContents[EventText.eventContents.badge]);
   }
