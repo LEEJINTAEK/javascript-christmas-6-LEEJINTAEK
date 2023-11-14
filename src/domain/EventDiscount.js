@@ -2,8 +2,7 @@ import Calender from './MakeCalender.js';
 import MENUS from '../const/Menu.js';
 import EventText from '../const/EventText.js';
 import EventStandard from '../const/EventStandard.js';
-
-//할인 혜택
+//할인 내역
 class EventDiscount {
   #calender;
   #date;
@@ -15,7 +14,7 @@ class EventDiscount {
   }
 
   dDayDiscount() {
-    if (this.#date >= EventStandard.discountStandard.dDayDiscountEnd) {
+    if (this.#date > EventStandard.discountStandard.dDayDiscountEnd) {
       return 0;
     }
     let discount = EventStandard.discountStandard.dDayStartDiscount;
