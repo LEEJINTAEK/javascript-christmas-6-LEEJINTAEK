@@ -4,7 +4,7 @@ import BeforeTheDiscount from './BeforeTheDiscount.js';
 import EventConditionController from './eventCondition.js';
 import EventController from './EventController.js';
 import EventText from '../const/EventText.js';
-import MENUS from './Menu.js';
+import MENUS from '../const/Menu.js';
 
 class Planner {
   #getBenefitContents;

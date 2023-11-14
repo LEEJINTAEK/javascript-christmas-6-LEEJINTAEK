@@ -1,4 +1,4 @@
-import MENUS from './Menu.js';
+import MENUS from '../const/Menu.js';
 
 class BeforeTheDiscount {
   #amount;

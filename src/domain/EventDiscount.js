@@ -1,5 +1,5 @@
 import Calender from './MakeCalender.js';
-import MENUS from './Menu.js';
+import MENUS from '../const/Menu.js';
 import EventText from '../const/EventText.js';
 import EventStandard from '../const/EventStandard.js';
 

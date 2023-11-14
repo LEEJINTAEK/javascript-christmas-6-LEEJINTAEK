@@ -1,5 +1,5 @@
 // 할인 후 예상 결제 금액 = 할인 전 총주문 금액 - 할인 금액
-import MENUS from './Menu.js';
+import MENUS from '../const/Menu.js';
 import EventDiscount from './EventDiscount.js';
 import EventBadge from './EventBadge.js';
 import EventText from '../const/EventText.js';
