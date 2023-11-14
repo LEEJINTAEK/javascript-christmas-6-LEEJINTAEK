@@ -1,12 +1,14 @@
-import MENUS from '../domain/Menu.js';
+import MENUS from '../const/Menu.js';
 import EventError from '../const/EventError.js';
 import EventStandard from '../const/EventStandard.js';
 
 const MENU_ERROR_MESSAGE = EventError.menuError;
 
 class ReadMenu {
+  #anotherMenus;
   //menus->2차원배열
   constructor(menus) {
+    this.#anotherMenus = new Set();
     this.#validate(menus);
     this.#duplicateAndCounting(menus);
   }
@@ -40,18 +42,17 @@ class ReadMenu {
 
   //메뉴가 없을 때 및 음료만 시킬 때
   #notOnTheMenuAndDrink(menu) {
-    const anotherMenus = new Set(); //음료만 시키는지 검사
     let find = false;
     for (const category in MENUS) {
       if (MENUS[category][menu]) {
         find = true;
-        anotherMenus.add(category);
+        this.#anotherMenus.add(category);
       }
     }
     if (!find) {
       throw new Error(MENU_ERROR_MESSAGE);
     }
-    if (anotherMenus.size === 1 && anotherMenus.has(EventStandard.dontOrder.menu)) {
+    if (this.#anotherMenus.size === 1 && this.#anotherMenus.has(EventStandard.dontOrder.menu)) {
       throw new Error(MENU_ERROR_MESSAGE);
     }
   }
