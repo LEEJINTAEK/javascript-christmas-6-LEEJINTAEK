@@ -1,6 +1,6 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
-import ReadDate from '../validate/readDate';
-import ReadMenu from '../validate/readMenu';
+import ReadDate from '../validate/readDate.js';
+import ReadMenu from '../validate/readMenu.js';
 import EventStandard from '../const/EventStandard.js';
 
 const InputView = {
