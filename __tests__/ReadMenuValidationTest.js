@@ -1,10 +1,11 @@
 import ReadMenu from '../src/validate/ReadMenu.js';
+import EVENT_ERROR from '../src/const/EventError.js';
 
 describe('ReadMenu의 예외 테스트', () => {
   const convert = (input) => {
     return input.split(',').map((menu) => menu.split('-'));
   };
-  const MENU_ERROR_MESSAGE = '[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.';
+  const MENU_ERROR_MESSAGE = EVENT_ERROR.menuError;
 
   test('입력이 형식에 맞지 않을 때 에러가 발생한다 ', () => {
     expect(() => {

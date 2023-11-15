@@ -1,5 +1,5 @@
-import EventError from '../const/EventError.js';
-import EventStandard from '../const/EventStandard.js';
+import EVENT_ERROR from '../const/EventError.js';
+import EVENT_STANDARD from '../const/EventStandard.js';
 
 class ReadDate {
   constructor(date) {
@@ -9,10 +9,10 @@ class ReadDate {
   #validate(date) {
     if (
       isNaN(date) ||
-      date < EventStandard.eventDay.startDay ||
-      date > EventStandard.eventDay.endDay
+      date < EVENT_STANDARD.eventDay.startDay ||
+      date > EVENT_STANDARD.eventDay.endDay
     ) {
-      throw new Error(EventError.dateError);
+      throw new Error(EVENT_ERROR.dateError);
     }
   }
 }

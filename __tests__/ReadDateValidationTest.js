@@ -1,7 +1,8 @@
 import ReadDate from '../src/validate/ReadDate.js';
+import EVENT_ERROR from '../src/const/EventError.js';
 
 describe('ReadDate의 예외 테스트', () => {
-  const DATE_ERROR_MESSAGE = '[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.';
+  const DATE_ERROR_MESSAGE = EVENT_ERROR.dateError;
 
   test('숫자가 아닐 때 에러가 발생한다.', () => {
     expect(() => {

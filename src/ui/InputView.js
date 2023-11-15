@@ -1,13 +1,13 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import ReadDate from '../validate/readDate.js';
 import ReadMenu from '../validate/readMenu.js';
-import EventStandard from '../const/EventStandard.js';
+import EVENT_STANDARD from '../const/EventStandard.js';
 
 const InputView = {
   async readDate() {
     try {
       const input = await MissionUtils.Console.readLineAsync(
-        `${EventStandard.eventMonth.month}월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)`,
+        `${EVENT_STANDARD.eventMonth.month}월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)`,
       );
       new ReadDate(input);
 

@@ -1,7 +1,7 @@
 import Calender from './MakeCalender.js';
 import MENUS from '../const/Menu.js';
-import EventText from '../const/EventText.js';
-import EventStandard from '../const/EventStandard.js';
+import EVENT_TEXT from '../const/EventText.js';
+import EVENT_STANDARD from '../const/EventStandard.js';
 //할인 내역
 class EventDiscount {
   #calender;
@@ -14,20 +14,20 @@ class EventDiscount {
   }
 
   dDayDiscount() {
-    if (this.#date > EventStandard.discountStandard.dDayDiscountEnd) {
+    if (this.#date > EVENT_STANDARD.discountStandard.dDayDiscountEnd) {
       return 0;
     }
-    let discount = EventStandard.discountStandard.dDayStartDiscount;
+    let discount = EVENT_STANDARD.discountStandard.dDayStartDiscount;
     for (let i = 1; i < this.#date; i++) {
-      discount += EventStandard.discountStandard.dDayPlusDiscount;
+      discount += EVENT_STANDARD.discountStandard.dDayPlusDiscount;
     }
-    this.#discountContents[EventText.discountContents.dDayDiscount] = discount;
+    this.#discountContents[EVENT_TEXT.discountContents.dDayDiscount] = discount;
     return discount;
   }
   specialDiscount() {
-    const discount = EventStandard.discountStandard.specialDiscount;
+    const discount = EVENT_STANDARD.discountStandard.specialDiscount;
     if (this.#calender.getSpecialDay().includes(this.#date)) {
-      this.#discountContents[EventText.discountContents.specialDiscount] = discount;
+      this.#discountContents[EVENT_TEXT.discountContents.specialDiscount] = discount;
       return discount;
     }
     return 0;
@@ -35,10 +35,10 @@ class EventDiscount {
 
   weekDiscount(menu, count) {
     for (const category in MENUS) {
-      if (MENUS[category][menu] && category === EventText.eventMenu.weekday) {
+      if (MENUS[category][menu] && category === EVENT_TEXT.eventMenu.weekday) {
         return this.#weekdayDiscount(count);
       }
-      if (MENUS[category][menu] && category === EventText.eventMenu.weekend) {
+      if (MENUS[category][menu] && category === EVENT_TEXT.eventMenu.weekend) {
         return this.#weekendDiscount(count);
       }
     }
@@ -46,17 +46,17 @@ class EventDiscount {
   }
 
   #weekdayDiscount(count) {
-    const discount = EventStandard.discountStandard.weekDiscount * count;
+    const discount = EVENT_STANDARD.discountStandard.weekDiscount * count;
     if (this.#calender.getWeekday().includes(this.#date)) {
-      this.#discountContents[EventText.discountContents.weekdayDiscount] = discount;
+      this.#discountContents[EVENT_TEXT.discountContents.weekdayDiscount] = discount;
       return discount;
     }
     return 0;
   }
   #weekendDiscount(count) {
-    const discount = EventStandard.discountStandard.weekDiscount * count;
+    const discount = EVENT_STANDARD.discountStandard.weekDiscount * count;
     if (this.#calender.getWeekend().includes(this.#date)) {
-      this.#discountContents[EventText.discountContents.weekendDiscount] = discount;
+      this.#discountContents[EVENT_TEXT.discountContents.weekendDiscount] = discount;
       return discount;
     }
     return 0;
@@ -64,7 +64,7 @@ class EventDiscount {
 
   getDiscountContents() {
     if (Object.keys(this.#discountContents).length === 0) {
-      return EventText.notThing.none;
+      return EVENT_TEXT.notThing.none;
     }
 
     return this.#discountContents;

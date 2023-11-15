@@ -1,4 +1,4 @@
-const EventStandard = {
+const EVENT_STANDARD = {
   bonusStandard: {
     price: 120000,
   },
@@ -32,4 +32,4 @@ const EventStandard = {
   },
 };
 
-export default EventStandard;
+export default EVENT_STANDARD;

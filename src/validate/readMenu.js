@@ -1,8 +1,8 @@
 import MENUS from '../const/Menu.js';
-import EventError from '../const/EventError.js';
-import EventStandard from '../const/EventStandard.js';
+import EVENT_ERROR from '../const/EventError.js';
+import EVENT_STANDARD from '../const/EventStandard.js';
 
-const MENU_ERROR_MESSAGE = EventError.menuError;
+const MENU_ERROR_MESSAGE = EVENT_ERROR.menuError;
 
 class ReadMenu {
   #anotherMenus;
@@ -35,7 +35,7 @@ class ReadMenu {
       menuCheck.push(menu);
       menuCount += Number(count);
     }
-    if (menuCount > EventStandard.menuCount.count) {
+    if (menuCount > EVENT_STANDARD.menuCount.count) {
       throw new Error(MENU_ERROR_MESSAGE);
     }
   }
@@ -52,7 +52,7 @@ class ReadMenu {
     if (!find) {
       throw new Error(MENU_ERROR_MESSAGE);
     }
-    if (this.#anotherMenus.size === 1 && this.#anotherMenus.has(EventStandard.dontOrder.menu)) {
+    if (this.#anotherMenus.size === 1 && this.#anotherMenus.has(EVENT_STANDARD.dontOrder.menu)) {
       throw new Error(MENU_ERROR_MESSAGE);
     }
   }

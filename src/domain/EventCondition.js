@@ -1,4 +1,4 @@
-import EventStandard from '../const/EventStandard.js';
+import EVENT_STANDARD from '../const/EventStandard.js';
 
 //이벤트 조건 발생
 class EventConditionController {
@@ -8,7 +8,7 @@ class EventConditionController {
     this.#occurController(totalAmount);
   }
   #occurController(totalAmount) {
-    if (totalAmount >= EventStandard.occurStandard.price) {
+    if (totalAmount >= EVENT_STANDARD.occurStandard.price) {
       this.#isEventOccur = true;
     }
   }

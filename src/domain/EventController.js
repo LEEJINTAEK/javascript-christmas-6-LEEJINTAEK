@@ -1,8 +1,8 @@
 import MENUS from '../const/Menu.js';
 import EventDiscount from './EventDiscount.js';
 import EventBadge from './EventBadge.js';
-import EventText from '../const/EventText.js';
-import EventStandard from '../const/EventStandard.js';
+import EVENT_TEXT from '../const/EventText.js';
+import EVENT_STANDARD from '../const/EventStandard.js';
 import EventError from '../const/EventError.js';
 
 class EventController {
@@ -20,15 +20,15 @@ class EventController {
 
   #eventContentsMaker() {
     const contents = [
-      EventText.eventContents.bonus,
-      EventText.eventContents.benefitContents,
-      EventText.eventContents.badge,
+      EVENT_TEXT.eventContents.bonus,
+      EVENT_TEXT.eventContents.benefitContents,
+      EVENT_TEXT.eventContents.badge,
     ];
     contents.forEach((event) => {
-      this.#eventContents[event] = EventText.notThing.none; //'없음'
+      this.#eventContents[event] = EVENT_TEXT.notThing.none; //'없음'
     });
-    this.#eventContents[EventText.eventContents.totalBenefit] = 0;
-    this.#eventContents[EventText.eventContents.bill] = 0;
+    this.#eventContents[EVENT_TEXT.eventContents.totalBenefit] = 0;
+    this.#eventContents[EVENT_TEXT.eventContents.bill] = 0;
   }
 
   #event(totalAmount, date, menus) {
@@ -44,12 +44,12 @@ class EventController {
     let discount = eventDiscount.dDayDiscount() + eventDiscount.specialDiscount();
     discount += this.#getWeekDiscount(menus, eventDiscount);
 
-    this.#eventContents[EventText.eventContents.totalBenefit] = discount; //총 할인 혜택 저장
+    this.#eventContents[EVENT_TEXT.eventContents.totalBenefit] = discount; //총 할인 혜택 저장
     this.#discountContents = eventDiscount.getDiscountContents();
 
     this.#getBonusMenu(totalAmount);
 
-    this.#eventContents[EventText.eventContents.benefitContents] = this.#discountContents; //할인 혜택 내용 저장
+    this.#eventContents[EVENT_TEXT.eventContents.benefitContents] = this.#discountContents; //할인 혜택 내용 저장
   }
 
   #getWeekDiscount(menus, eventDiscount) {
@@ -62,21 +62,21 @@ class EventController {
 
   //증정 메뉴
   #getBonusMenu(totalAmount) {
-    if (totalAmount >= EventStandard.bonusStandard.price) {
-      this.#eventContents[EventText.eventContents.bonus] = EventText.bonusMenu.menu; //증정 메뉴 저장
+    if (totalAmount >= EVENT_STANDARD.bonusStandard.price) {
+      this.#eventContents[EVENT_TEXT.eventContents.bonus] = EVENT_TEXT.bonusMenu.menu; //증정 메뉴 저장
 
-      const bonusMenuPrice = MENUS[EventText.bonusMenu.category][EventText.bonusMenu.menu];
+      const bonusMenuPrice = MENUS[EVENT_TEXT.bonusMenu.category][EVENT_TEXT.bonusMenu.menu];
 
-      this.#eventContents[EventText.eventContents.totalBenefit] += bonusMenuPrice; //증정 메뉴 혜택금액에 저장
+      this.#eventContents[EVENT_TEXT.eventContents.totalBenefit] += bonusMenuPrice; //증정 메뉴 혜택금액에 저장
 
-      this.#eventContents[EventText.eventContents.bill] += bonusMenuPrice; //할인 후 예상 금액에서 증정 메뉴 가격 차감
-      this.#discountContents[EventText.discountContents.bonus] = bonusMenuPrice; //혜택 내용, 증정 메뉴 가격 추가
+      this.#eventContents[EVENT_TEXT.eventContents.bill] += bonusMenuPrice; //할인 후 예상 금액에서 증정 메뉴 가격 차감
+      this.#discountContents[EVENT_TEXT.discountContents.bonus] = bonusMenuPrice; //혜택 내용, 증정 메뉴 가격 추가
     }
   }
 
   #getEventBadge() {
-    this.#eventContents[EventText.eventContents.badge] = EventBadge.getEventBadge(
-      this.#eventContents[EventText.eventContents.totalBenefit], //이벤트 배지 저장
+    this.#eventContents[EVENT_TEXT.eventContents.badge] = EventBadge.getEventBadge(
+      this.#eventContents[EVENT_TEXT.eventContents.totalBenefit], //이벤트 배지 저장
     );
   }
 

@@ -1,4 +1,4 @@
-const EventText = {
+const EVENT_TEXT = {
   eventContents: {
     bonus: '증정 메뉴',
     benefitContents: '혜택 내역',
@@ -33,4 +33,4 @@ const EventText = {
   },
 };
 
-export default EventText;
+export default EVENT_TEXT;

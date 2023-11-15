@@ -3,7 +3,7 @@ import OutputView from '../UI/OutputView.js';
 import BeforeTheDiscount from './BeforeTheDiscount.js';
 import EventConditionController from './eventCondition.js';
 import EventController from './EventController.js';
-import EventText from '../const/EventText.js';
+import EVENT_TEXT from '../const/EventText.js';
 import MENUS from '../const/Menu.js';
 
 class PlannerStart {
@@ -46,16 +46,16 @@ class PlannerStart {
   }
   //플래너 내역 출력
   #printContents(totalAmount) {
-    OutputView.printBonusMenu(this.#getBenefitContents[EventText.eventContents.bonus]); //증정 메뉴
-    OutputView.printBenefit(this.#getBenefitContents[EventText.eventContents.benefitContents]); //혜택 내용
-    OutputView.printTotalBenefit(this.#getBenefitContents[EventText.eventContents.totalBenefit]); //총혜택금액
+    OutputView.printBonusMenu(this.#getBenefitContents[EVENT_TEXT.eventContents.bonus]); //증정 메뉴
+    OutputView.printBenefit(this.#getBenefitContents[EVENT_TEXT.eventContents.benefitContents]); //혜택 내용
+    OutputView.printTotalBenefit(this.#getBenefitContents[EVENT_TEXT.eventContents.totalBenefit]); //총혜택금액
     OutputView.printBill(
       //할인 후 예상 금액
       totalAmount -
-        this.#getBenefitContents[EventText.eventContents.totalBenefit] +
-        this.#getBenefitContents[EventText.eventContents.bill], //보너스 메뉴 받은 것 상쇄
+        this.#getBenefitContents[EVENT_TEXT.eventContents.totalBenefit] +
+        this.#getBenefitContents[EVENT_TEXT.eventContents.bill], //보너스 메뉴 받은 것 상쇄
     );
-    OutputView.printBadge(this.#getBenefitContents[EventText.eventContents.badge]); //이벤트 배지
+    OutputView.printBadge(this.#getBenefitContents[EVENT_TEXT.eventContents.badge]); //이벤트 배지
   }
 }
 
